@@ -6,7 +6,7 @@ start()
    echo "Start battery check..."
    while sleep 3s; do
       check # Call script
-   done
+   done &
 }
 
 
