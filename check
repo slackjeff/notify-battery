@@ -1,0 +1,27 @@
+#!/bin/bash
+#====================HEADER===============================|
+#AUTOR
+# Jefferson 'Slackjeff' Rocha <root@slackjeff.com.br>
+#
+#Meu netbook dura apenas 2 minutos sem o carregador na
+#parede. As vezes eu acabo desconectando o mesmo sem querer
+#Utilizo o i3status o mesmo avisa na barra mas nada é muito
+#visivel.
+#Criei este script para fazer o aviso na tela utilizando
+#o notify-send.
+#=========================================================|
+
+#============VARS
+export DISPLAY=':0.0'
+user='slackjeff' # Nome do seu usuário
+
+# Pegando caminho absoluto dos aplicativos.
+GREP="$(which grep)"
+PLAY="$(which play)"
+
+#============INICIO
+msg="O seu carregador está desconectado..."
+
+if ! $GREP -q 'on-line' /proc/acpi/ac_adapter/ACAD/state; then
+   su "$user" -c "/usr/bin/notify-send -i battery-missing \"$msg\""
+fi

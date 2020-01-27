@@ -1,0 +1,15 @@
+#!/bin/sh
+# Daemon for check battery with 2/2 seconds.
+
+start()
+{
+   while sleep 3s; do
+      check # Call script
+   done &
+}
+
+
+case $1 in
+   start) start ;;
+   stop) killall rc.battery ;;
+esac
